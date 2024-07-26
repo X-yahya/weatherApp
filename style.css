@@ -4,24 +4,49 @@
     padding: 0;
     box-sizing: border-box;
  height: 100%;
+ background-color: #242629;
 }
 
+button
+{
+    background-color: #7f5af0   ;
+    color: #fffffe;
+    border-radius: 5px;
+    border:none;
+}
 .container
 {
     margin-top: 50px;
     height: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
+    justify-content: space-between;
 
+    color: white;
+    font-weight: 900;   
+}
+.info
+
+{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.subInfo
+{
+    /* margin-left:s -100px; */
+    opacity: 50%;
+}
 
 #hourly-container
 {
     width: 50%;
     height: 50%;
-    
+    background-color: #242629;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -30,8 +55,14 @@
 }
 .Hourly-Forecasts
 {
+    width: 10%;
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: center;
+    background-color: #16161a;
+    color: #fffffe;
+    font-weight: 900;
+    /* filter: opacity(0.5); */
+    border-radius: 5px;
 }

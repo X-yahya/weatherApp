@@ -9,6 +9,10 @@ function uiHandler() {
     const img = document.querySelector('#icon') ; 
     const temp = document.querySelector("#temp") ;
     const hourlyContainer = document.querySelector("#hourly-container") ; 
+    // const SubInfo = document.querySelector(".subInfo") ; 
+    const percip = document.querySelector("#Precipitation")  ; 
+    const humi = document.querySelector("#Humidity") ; 
+    const wind = document.querySelector("#wind") ;
     fetchButton.addEventListener("click", async () => {
         try {
             
@@ -18,12 +22,12 @@ function uiHandler() {
             }
             const WeatherData = await response.json();
             console.log(WeatherData) ;
-            countryUi.innerHTML = country.value ; 
-            temp.innerHTML = WeatherData.currentConditions.temp ; 
+            countryUi.innerHTML = "Results For : "+country.value.charAt(0).toUpperCase()+country.value.slice(1) ; 
+            temp.innerHTML = WeatherData.currentConditions.conditions + ' '+ WeatherData.currentConditions.temp + ' °C' ; 
             const iconInfo = WeatherData.currentConditions.icon ; 
-            
-            //const gifResponse = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=tE7e5fdyvGOXLQB5kZDcDBt1hBIAEpB0&s=${iconInfo}`, { mode: 'cors' });
-            //const gifData = await gifResponse.json() ; 
+            percip.textContent = "Precipitation: "+WeatherData.currentConditions.precipprob+"%" ; 
+            humi.textContent = "Humidity: "+WeatherData.currentConditions.humidity+"%" ; 
+            wind.textContent = "Wind: "+WeatherData.currentConditions.windspeed+"km/h" ; 
             img.src = `./assests/icons/${iconInfo}.svg`; 
           
             hourlyContainer.innerHTML = "" ;
@@ -38,13 +42,16 @@ function uiHandler() {
       
                const hourtext = document.createElement("p") ; 
                hourtext.classList.add("hour-text") ; 
-               hourtext.textContent = hour.datetime;
+            //    console.log(hour.datetime.type) ; 
+               hourtext.textContent = hour.datetime.substring(0,5);
                const hourtemp = document.createElement("p") ; 
                hourtemp.classList.add("hourly-temp") ; 
-               hourtemp.textContent = hour.temp;
+               hourtemp.textContent = hour.temp + ' °C';
                const hourIcon = document.createElement("img") ;
                hourIcon.classList.add("Hourly-icon") ; 
                hourIcon.src = `./assests/icons/${hour.icon}.svg` ; 
+               hourIcon.style.width = "50px" ;
+               hourIcon.style.height = "50px"
                hourDiv.appendChild(hourtext) ; 
                hourDiv.appendChild(hourIcon) ; 
                hourDiv.appendChild(hourtemp) ; 
